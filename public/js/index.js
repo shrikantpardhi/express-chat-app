@@ -11,6 +11,7 @@ $chatroom = "";
 $joinForm = document.querySelector(".join-form");
 $form = document.querySelector(".compose-form");
 $messageContent = document.querySelector(".messages");
+$userList = document.querySelector(".userlist");
 
 $joinForm.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -21,6 +22,10 @@ $joinForm.addEventListener("submit", (event) => {
   document.querySelector(".welcome-screen").remove();
   document.querySelector(".main-content").classList.remove("hidden");
   document.querySelector(".chat-title").innerHTML = $chatroom;
+  // add user to list
+  var li = document.createElement("li");
+  li.innerText = `${$username}`;
+  $userList.appendChild(li);
 });
 
 $form.addEventListener("submit", (event) => {
@@ -48,6 +53,11 @@ socket.on("notification", (option) => {
   div.innerHTML = `<div class="message">${option.username} joined the chat.</div>`;
   div.setAttribute("class", "join-message");
   $messageContent.appendChild(div);
+
+  // add user to list
+  var li = document.createElement("li");
+  li.innerText = `${option.username}`;
+  $userList.appendChild(li);
 });
 
 // receive the message

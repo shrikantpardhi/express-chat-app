@@ -44,9 +44,15 @@ body {
   height: 100vh;
 }
 
+.sidebar > ul {
+  padding: 1rem;
+}
+
 ul > li {
   list-style: none;
-  padding: 0.5rem;
+  /* padding: 0.5rem;
+  border: 1px solid white; */
+  margin: inherit;
 }
 
 .chat {
